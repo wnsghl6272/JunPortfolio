@@ -2,13 +2,19 @@ import OpenAI from "openai";
 import express from "express";
 import cors from "cors";
 import { MongoClient } from "mongodb";
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const ASSISTANT_ID = process.env.ASSISTANT_ID;
+const uri = process.env.MONGODB_URI;
 
 const openai = new OpenAI({
-    apiKey: 'sk-proj-LHpm7DUOVnNWXSgM53KXT3BlbkFJJp3vZY5fZaN9Kwn8nHYg'
+    apiKey: OPENAI_API_KEY
   });
 
   //MongoDB 셋업
-const uri = "mongodb+srv://cjun1775:%40Australia1122@dennisportfo.d2x88w0.mongodb.net/?retryWrites=true&w=majority&appName=DennisPortfo"
 const client = new MongoClient(uri);
 
 let db; // 데이터베이스 저장 변수 선언
@@ -58,7 +64,7 @@ async function addMessage(threadId, message) {
 async function runAssistant(threadId) {
     console.log("Running assistant for thread: " + threadId);
     const response = await openai.beta.threads.runs.create(threadId, {
-        assistant_id: 'asst_hVSHBC3yYaMRwyzG8640yffx'
+        assistant_id: ASSISTANT_ID
     });
 
     console.log(response);

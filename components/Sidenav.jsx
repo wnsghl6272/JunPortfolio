@@ -32,27 +32,23 @@ const Sidenav = () => {
                     <p className="font-semibold text-gray-500">04</p>
                     <p classNAme="font-normal">Blog</p>
                 </a>
-                <a className="grid grid-cols-[32px_auto] no-underline" href="#Skill">
-                    <p className="font-semibold text-gray-500">05</p>
-                    <p className="font-normal">Skill</p>
-                </a>
                 <a className="grid grid-cols-[32px_auto] no-underline" href="#Education">
-                    <p className="font-semibold text-gray-500">06</p>
+                    <p className="font-semibold text-gray-500">05</p>
                     <p className="font-normal">Education</p>
                 </a>
         </div>
 
         <div class="grid grid-cols-[60px_auto] text-s gap-3 pt-4 text-foreground/80 border-t border-t-black/25 dark:border-t-white/25">
-                <p class="col-span-2 text-md font-extrabold text-gray-500">Contact</p>
-                <p class="font-semibold text-gray-500">Phone</p>
-                <p class="font-normal">+61 4123 456789</p>
-                <p class="font-semibold text-gray-500">Email</p>
-                <p class="font-normal">Dennis@gmail.com</p>
-                <p class="font-semibold text-gray-500">Github</p>
-                <a target="_blank" href="#">
-                    <p class="font-normal">@DennisTest</p>
-                </a>
-        </div>
+    <a href="#Contact" class="col-span-2 text-md font-extrabold text-gray-500 no-underline cursor-pointer">Contact</a>
+    <p class="font-semibold text-gray-500">Phone</p>
+    <p class="font-normal">+61 413361775</p>
+    <p class="font-semibold text-gray-500">Email</p>
+    <p class="font-normal">cjun1775@gmail.com</p>
+    <p class="font-semibold text-gray-500">Github</p>
+    <a target="_blank" href="https://github.com/wnsghl6272">
+        <p class="font-normal">@wnsghl6272</p>
+    </a>
+</div>
     </nav>
       <div>
     {/* <div> md:flex md:flex-col md:items-start */}

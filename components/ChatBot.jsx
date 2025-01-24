@@ -3,9 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Paper, TextField, IconButton, CircularProgress } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import WavingHandIcon from '@mui/icons-material/WavingHand';
+import ChatIcon from '@mui/icons-material/Chat';
 
 const ChatBot = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    { 
+      role: 'assistant', 
+      content: 'Hello! 👋 Happy to have a conversation with you! Ask me anything' 
+    }
+  ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [threadId, setThreadId] = useState(null);
@@ -58,28 +65,59 @@ const ChatBot = () => {
 
   return (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {/* Chat Header */}
       <Box 
         sx={{ 
-          flexGrow: 1, 
-          overflow: 'auto', 
+          p: 2, 
+          bgcolor: 'grey.100',
+          borderBottom: '1px solid',
+          borderColor: 'grey.300',
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+          <ChatIcon sx={{ color: 'grey.700' }} />
+          <Box>
+            <Box sx={{ 
+              typography: 'h6', 
+              fontWeight: 'bold',
+              color: 'grey.800'
+            }}>
+              Chat with Dennis
+            </Box>
+            <Box sx={{ 
+              typography: 'body2',
+              color: 'grey.600'
+            }}>
+              Ask anything about me
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* Chat Messages */}
+      <Box
+        sx={{
+          flex: 1,
+          overflow: 'auto',
           p: 2,
           display: 'flex',
           flexDirection: 'column',
+          gap: 2,
         }}
       >
         {messages.map((msg, index) => (
           <Box
             key={index}
             sx={{
-              mb: 2,
-              alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
-              maxWidth: '80%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: msg.role === 'user' ? 'flex-end' : 'flex-start',
+              gap: 0.5,
             }}
           >
             <Box
               sx={{
-                mb: 0.5,
-                fontSize: '0.85rem',
+                typography: 'caption',
                 color: 'grey.600',
                 textAlign: msg.role === 'user' ? 'right' : 'left',
               }}
@@ -89,9 +127,10 @@ const ChatBot = () => {
             <Paper
               sx={{
                 p: 2,
-                bgcolor: msg.role === 'user' ? '#1976d2' : '#f5f5f5',
+                bgcolor: msg.role === 'user' ? '#1976d2' : 'grey.100',
                 color: msg.role === 'user' ? 'white' : 'black',
                 borderRadius: '1rem',
+                maxWidth: '80%',
               }}
             >
               {msg.content}
@@ -100,7 +139,8 @@ const ChatBot = () => {
         ))}
       </Box>
 
-      <Box sx={{ p: 2, borderTop: '1px solid #eee' }}>
+      {/* Input Area */}
+      <Box sx={{ p: 2, borderTop: '1px solid', borderColor: 'grey.200' }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
           <TextField
             fullWidth
@@ -111,15 +151,30 @@ const ChatBot = () => {
               if (e.key === 'Enter') handleSend(e);
             }}
             disabled={isLoading}
-            placeholder="Ask anything about Dennis..."
+            placeholder="Type your message..."
             variant="outlined"
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '1.5rem',
+              }
+            }}
           />
           <IconButton 
             onClick={handleSend}
             disabled={isLoading}
-            color="primary"
+            sx={{
+              bgcolor: 'primary.main',
+              color: 'white',
+              '&:hover': {
+                bgcolor: 'primary.dark',
+              },
+              '&.Mui-disabled': {
+                bgcolor: 'grey.300',
+                color: 'grey.500',
+              }
+            }}
           >
-            {isLoading ? <CircularProgress size={24} /> : <SendIcon />}
+            {isLoading ? <CircularProgress size={24} color="inherit" /> : <SendIcon />}
           </IconButton>
         </Box>
       </Box>

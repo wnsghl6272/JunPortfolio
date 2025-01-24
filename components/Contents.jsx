@@ -74,14 +74,16 @@ const Contents = () => {
         <div className="mt-8 max-w-2xl w-full mx-auto bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
           {/* Chat Header */}
           <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-            <div className="flex items-center">
-              <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-              <span className="font-medium text-gray-700">Ask Anything About Me</span>
+            <div className="flex flex-col">
+              <div className="flex items-center mb-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                <span className="font-medium text-gray-700">Dennis Cha</span>
+              </div>
             </div>
           </div>
           
-          {/* Integrate ChatBot component */}
-          <div className="h-[400px]">
+          {/* Integrate ChatBot component with increased height */}
+          <div className="h-[500px]">
             <ChatBot embedded={true} />
           </div>
         </div>

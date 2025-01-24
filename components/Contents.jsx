@@ -209,7 +209,7 @@ const Contents = () => {
   <div className="flex flex-col gap-4">
     <a 
       className="no-underline relative group" 
-      href="https://shop.my-portfolio-dennis.xyz/"
+      href="https://https://my-portfolio-dennis.xyz//"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -219,13 +219,13 @@ const Contents = () => {
       >
         <img 
           src="/project2.png"
-          alt="E-commerce marketplace preview" 
+          alt="Portfolio website with Open Ai Chatbot" 
           className="w-full h-full object-cover absolute top-0 left-0"
         />
         
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
           transition-opacity duration-300 flex items-center justify-center">
-          <p className="text-white text-xl font-semibold">E-commerce marketplace</p>
+          <p className="text-white text-xl font-semibold">Open Ai Chatbot Portfolio</p>
         </div>
       </div>
     </a>
@@ -236,6 +236,7 @@ const Contents = () => {
         'React',
         'NextJS',
         'Tailwind',
+        'MongoDB',
         'OpenAI',
       ].map((tech, index) => (
         <span

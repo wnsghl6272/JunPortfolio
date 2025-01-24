@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import ChatBot from './ChatBot';
 
 const Contents = () => {
   const [isAboutVisible, setIsAboutVisible] = useState(false);
@@ -50,22 +51,46 @@ const Contents = () => {
 
   return (
     <div className="w-full xl:pt-10">
-      {/* Main Section */}
-      <div id="Main" className="min-h-[70vh] flex flex-col justify-center pb-32">
-        <h1 className="text-5xl">
-          Junior Developer <p className="text-gray-500 font-bold text-6xl pt-2">Dennis Cha</p>
-        </h1>
-        <div className="flex flex-row">
-          <img className="w-24 h-24 lg:w-40 lg:h-40" src="/main1.svg" alt="Main Icon 1" />
-          <img className="w-24 h-24 lg:w-40 lg:h-40" src="/main2.svg" alt="Main Icon 2" />
-          <img className="w-24 h-24 lg:w-40 lg:h-40" src="/main3.svg" alt="Main Icon 3" />
+    {/* Main Section */}
+    <div id="Main" className="min-h-[60vh] flex flex-col justify-center pb-16">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-8">
+        <div>
+          <h1 className="text-5xl">
+            Junior Developer 
+          <p className="text-gray-500 font-bold text-6xl pt-2 flex items-center">
+            Dennis Cha
+          <span className="flex ml-4">
+            <img className="w-16 h-16 lg:w-24 lg:h-24" src="/main1.svg" alt="Main Icon 1" />
+            <img className="w-16 h-16 lg:w-24 lg:h-24" src="/main2.svg" alt="Main Icon 2" />
+            <img className="w-16 h-16 lg:w-24 lg:h-24" src="/main3.svg" alt="Main Icon 3" />
+          </span>
+        </p>
+      </h1>
+    </div>
+  </div>
+        
+
+        {/* Chat Interface */}
+        <div className="mt-8 max-w-2xl w-full mx-auto bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+          {/* Chat Header */}
+          <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+              <span className="font-medium text-gray-700">Ask Anything About Me</span>
+            </div>
+          </div>
+          
+          {/* Integrate ChatBot component */}
+          <div className="h-[400px]">
+            <ChatBot embedded={true} />
+          </div>
         </div>
       </div>
 
       {/* About Section */}
       <section
         id="About"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -94,7 +119,7 @@ const Contents = () => {
       {/* Experience Section */}
       <section
         id="Exp"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           sectionsVisible.Exp ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -122,7 +147,7 @@ const Contents = () => {
       {/* Project Section */}
       <section
         id="Project"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           sectionsVisible.Project ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -130,82 +155,104 @@ const Contents = () => {
         <p className="section-title text-2xl pt-5 pb-5">
           List of project 
         </p>
-        <div className="cards grid md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-          {/* E-commerce Project Card */}
-          <div className="flex flex-col gap-4">
-            <a 
-              className="no-underline relative group" 
-              href="https://shop.my-portfolio-dennis.xyz/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="w-full h-fit md:h-72 xl:h-80 p-5 md:p-6 bg-background border border-black/15 
-                rounded-md md:rounded-lg flex md:flex-col justify-between items-end md:items-start 
-                group hover:bg-gray-100 transition-all duration-300 relative overflow-hidden"
-              >
-                <img 
-                  src="/project1.png"
-                  alt="E-commerce marketplace preview" 
-                  className="w-full h-full object-cover absolute top-0 left-0"
-                />
-                
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
-                  transition-opacity duration-300 flex items-center justify-center">
-                  <p className="text-white text-xl font-semibold">E-commerce marketplace</p>
-                </div>
-              </div>
-            </a>
-            
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2">
-              {[
-                'React',
-                'TypeScript',
-                'NextJS',
-                'Tailwind',
-                'Redux',
-                'Stripe'
-              ].map((tech, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-gray-100 text-gray-800 text-sm font-medium rounded-full
-                    hover:bg-gray-200 transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
 
-          {/* Coming Soon Cards */}
-          {[1, 2, 3].map((index) => (
-            <div 
-              key={index}
-              className="relative group"
-            >
-              <div className="w-full h-fit md:h-72 xl:h-80 p-5 md:p-6 bg-background border border-black/15 
-                rounded-md md:rounded-lg flex md:flex-col justify-between items-end md:items-start 
-                group hover:bg-gray-100 transition-all duration-300 relative overflow-hidden"
-              >
-                <img 
-                  src={"/previewproject.jpg"}
-                  className="w-full h-full object-cover absolute top-0 left-0"
-                />
-                
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
-                  transition-opacity duration-300 flex items-center justify-center">
-                  <p className="text-white text-xl font-semibold">Coming Soon</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="cards grid md:grid-cols-2 gap-8">
+  {/* First E-commerce Project Card */}
+  <div className="flex flex-col gap-4">
+    <a 
+      className="no-underline relative group" 
+      href="https://shop.my-portfolio-dennis.xyz/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="w-full h-[400px] p-5 md:p-6 bg-background border border-black/15 
+        rounded-md md:rounded-lg flex md:flex-col justify-between items-end md:items-start 
+        group hover:bg-gray-100 transition-all duration-300 relative overflow-hidden"
+      >
+        <img 
+          src="/project1.png"
+          alt="E-commerce marketplace preview" 
+          className="w-full h-full object-cover absolute top-0 left-0"
+        />
+        
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
+          transition-opacity duration-300 flex items-center justify-center">
+          <p className="text-white text-xl font-semibold">E-commerce marketplace</p>
         </div>
+      </div>
+    </a>
+    
+    {/* Tech Stack */}
+    <div className="flex flex-wrap gap-2">
+      {[
+        'React',
+        'TypeScript',
+        'NextJS',
+        'Tailwind',
+        'Redux',
+        'Stripe'
+      ].map((tech, index) => (
+        <span
+          key={index}
+          className="px-3 py-1 bg-gray-100 text-gray-800 text-sm font-medium rounded-full
+            hover:bg-gray-200 transition-colors duration-200"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  {/* Second E-commerce Project Card */}
+  <div className="flex flex-col gap-4">
+    <a 
+      className="no-underline relative group" 
+      href="https://shop.my-portfolio-dennis.xyz/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="w-full h-[400px] p-5 md:p-6 bg-background border border-black/15 
+        rounded-md md:rounded-lg flex md:flex-col justify-between items-end md:items-start 
+        group hover:bg-gray-100 transition-all duration-300 relative overflow-hidden"
+      >
+        <img 
+          src="/project2.png"
+          alt="E-commerce marketplace preview" 
+          className="w-full h-full object-cover absolute top-0 left-0"
+        />
+        
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
+          transition-opacity duration-300 flex items-center justify-center">
+          <p className="text-white text-xl font-semibold">E-commerce marketplace</p>
+        </div>
+      </div>
+    </a>
+    
+    {/* Tech Stack */}
+    <div className="flex flex-wrap gap-2">
+      {[
+        'React',
+        'NextJS',
+        'Tailwind',
+        'OpenAI',
+      ].map((tech, index) => (
+        <span
+          key={index}
+          className="px-3 py-1 bg-gray-100 text-gray-800 text-sm font-medium rounded-full
+            hover:bg-gray-200 transition-colors duration-200"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
       </section>
 
       {/* Blog Section */}
       <section
         id="Blog"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           sectionsVisible.Blog ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -286,7 +333,7 @@ const Contents = () => {
       {/* Education Section */}
       <section
         id="Education"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           sectionsVisible.Education ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
@@ -312,7 +359,7 @@ const Contents = () => {
       {/* Contact Section */}
       <section
         id="Contact"
-        className={`min-h-screen py-32 transition-opacity duration-700 ease-in-out ${
+        className={`min-h-[60vh] py-16 transition-opacity duration-700 ease-in-out ${
           sectionsVisible.Contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >

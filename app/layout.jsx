@@ -17,7 +17,6 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       <div className="font-mj w-full min-w-96 max-w-screen-xl min-h-screen mx-auto px-5 md:px-8 xl:px-20 flex flex-col xl:flex-row xl:gap-12 xl:items-start">
         <Sidenav />
-        <ChatBot />
         {children}
         </div>
       </body>

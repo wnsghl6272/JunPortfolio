@@ -1,13 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Box, Fab, Paper, TextField, IconButton, CircularProgress } from '@mui/material';
-import ChatIcon from '@mui/icons-material/Chat';
+import { Box, Paper, TextField, IconButton, CircularProgress } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import CloseIcon from '@mui/icons-material/Close';
 
 const ChatBot = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,13 +26,8 @@ const ChatBot = () => {
     createThread();
   }, []);
 
-  const handleToggle = (e) => {
-    e.stopPropagation();
-    setIsOpen(!isOpen);
-  };
-
   const handleSend = async (e) => {
-    if (e) e.stopPropagation();
+    if (e) e.preventDefault();
     if (!input.trim() || !threadId) return;
 
     setIsLoading(true);
@@ -65,173 +57,72 @@ const ChatBot = () => {
   };
 
   return (
-    <Box 
-      sx={{ 
-        position: 'fixed', 
-        bottom: 20, 
-        right: 20,
-        pointerEvents: 'auto',
-        zIndex: 1000
-      }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      {isOpen && (
-        <Paper
-          elevation={3}
-          sx={{
-            position: 'absolute',
-            bottom: 70,
-            right: 0,
-            width: 600, // 너비 증가
-            height: 400, // 높이 증가
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            zIndex: 1000,
-            backgroundColor: 'white',
-            pointerEvents: 'auto',
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* 제목 추가 */}
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              mb: 2,
-              borderBottom: '1px solid #eee',
-              pb: 1
-            }}
-          >
-            <Box 
-              sx={{ 
-                fontSize: '1.2rem',
-                fontWeight: 'bold',
-                color: '#333',
-                flex: 1,
-                textAlign: 'center'
-              }}
-            >
-              Ask Anything About Me
-            </Box>
-            <IconButton onClick={handleToggle}>
-              <CloseIcon />
-            </IconButton>
-          </Box>
-          
-          <Box 
-  sx={{ 
-    flexGrow: 1, 
-    overflow: 'auto', 
-    mb: 2,
-    pointerEvents: 'auto'
-  }}
->
-  {messages.map((msg, index) => (
-    <Box
-      key={index}
-      sx={{
-        mb: 2,  // 메시지 간격 증가
-        textAlign: msg.role === 'user' ? 'right' : 'left',
-      }}
-    >
-      {/* 레이블 추가 */}
-      <Box
-        sx={{
-          mb: 0.5,
-          fontSize: '0.85rem',
-          color: 'grey.600',
-          fontWeight: 500,
-          px: 1,
-        }}
-      >
-        {msg.role === 'user' ? 'Me:' : 'AI Bot:'}
-      </Box>
-      
-      <Paper
-        sx={{
-          p: 1.5,  // 패딩 약간 증가
-          display: 'inline-block',
-          bgcolor: msg.role === 'user' ? '#f5f5f5' : '#eeeeee',
-          maxWidth: '80%',
-          wordBreak: 'break-word',
-          borderRadius: '12px',  // 모서리를 더 둥글게
-          px: 2,  // 좌우 패딩 증가
-        }}
-      >
-        {msg.content}
-      </Paper>
-    </Box>
-  ))}
-</Box>
-
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              gap: 1,
-              pointerEvents: 'auto'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <TextField
-              fullWidth
-              size="small"
-              value={input}
-              onChange={(e) => {
-                e.stopPropagation();
-                setInput(e.target.value);
-              }}
-              onKeyPress={(e) => {
-                e.stopPropagation();
-                if (e.key === 'Enter') handleSend(e);
-              }}
-              disabled={isLoading}
-              placeholder="Ask anything about Dennis"
-              variant="outlined"
-              sx={{ 
-                backgroundColor: 'white',
-                pointerEvents: 'auto',
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: 'grey.300',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'grey.500',
-                  },
-                },
-              }}
-              onClick={(e) => e.stopPropagation()}
-            />
-            <IconButton 
-              onClick={handleSend}
-              disabled={isLoading}
-              sx={{ 
-                pointerEvents: 'auto',
-                color: 'grey.700', // 아이콘 색상을 회색으로 변경
-                '&:hover': {
-                  backgroundColor: 'grey.100',
-                }
-              }}
-            >
-              {isLoading ? <CircularProgress size={24} /> : <SendIcon />}
-            </IconButton>
-          </Box>
-        </Paper>
-      )}
-
-      <Fab 
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Box 
         sx={{ 
-          bgcolor: 'grey.500', // Fab 버튼 색상을 회색으로 변경
-          '&:hover': {
-            bgcolor: 'grey.600',
-          },
-          pointerEvents: 'auto'
+          flexGrow: 1, 
+          overflow: 'auto', 
+          p: 2,
+          display: 'flex',
+          flexDirection: 'column',
         }}
-        onClick={handleToggle}
       >
-        <ChatIcon />
-      </Fab>
+        {messages.map((msg, index) => (
+          <Box
+            key={index}
+            sx={{
+              mb: 2,
+              alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+              maxWidth: '80%',
+            }}
+          >
+            <Box
+              sx={{
+                mb: 0.5,
+                fontSize: '0.85rem',
+                color: 'grey.600',
+                textAlign: msg.role === 'user' ? 'right' : 'left',
+              }}
+            >
+              {msg.role === 'user' ? 'You' : 'Dennis'}
+            </Box>
+            <Paper
+              sx={{
+                p: 2,
+                bgcolor: msg.role === 'user' ? '#1976d2' : '#f5f5f5',
+                color: msg.role === 'user' ? 'white' : 'black',
+                borderRadius: '1rem',
+              }}
+            >
+              {msg.content}
+            </Paper>
+          </Box>
+        ))}
+      </Box>
+
+      <Box sx={{ p: 2, borderTop: '1px solid #eee' }}>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <TextField
+            fullWidth
+            size="small"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') handleSend(e);
+            }}
+            disabled={isLoading}
+            placeholder="Ask anything about Dennis..."
+            variant="outlined"
+          />
+          <IconButton 
+            onClick={handleSend}
+            disabled={isLoading}
+            color="primary"
+          >
+            {isLoading ? <CircularProgress size={24} /> : <SendIcon />}
+          </IconButton>
+        </Box>
+      </Box>
     </Box>
   );
 };

@@ -36,7 +36,10 @@ const Navbar = () => {
             <header className="xl:hidden pb-2 sticky top-0 z-50 w-full h-20 bg-light border-b border-b-gray-400 xl:border-b-0
             flex justify-between items-center bg-white">
                 {/* logo/name */}
-                <div className="relative group flex items-center w-fit mt-2">
+                <div 
+                    className="relative group flex items-center w-fit mt-2 cursor-pointer" 
+                    onClick={scrollToTop}
+                >
                     <img src="navLogo.png" className="w-50 h-20 group-hover:opacity-0 transition-opacity duration-300" alt="Logo" />
                     <div className="absolute text-[30px] font-bold text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dennis</div>
                 </div>

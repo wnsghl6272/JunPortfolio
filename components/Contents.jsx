@@ -56,7 +56,7 @@ const Contents = () => {
       <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-8">
         <div>
           <h1 className="text-5xl">
-            Junior Developer 
+            Software Developer
           <p className="text-gray-500 font-bold text-6xl pt-2 flex items-center">
             Dennis Cha
           <span className="flex ml-4">

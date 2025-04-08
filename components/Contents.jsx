@@ -134,6 +134,7 @@ const Contents = () => {
         <p className="font-semibold">2023 - Present</p>
         <p className="font-semibold">Responsible for coordinating, planning and leading information technology-related activities in an organization.</p>
         <ul className="list-disc list-inside -indent-5 pl-6">
+          <li>Modified and optimized Shopify code to troubleshoot and resolve errors on the eCommerce website, ensuring seamless functionality and an enhanced user experience.</li>
           <li>Follow IT projects from Head Quarter and global organization including the design and deployment of new IT systems and services.</li>
           <li>Provided comprehensive technical support to end users, troubleshooting and resolving hardware, software and network issues to ensure smooth daily operations.</li>
           <li>Managed the procurement process for IT assets including laptops, desktops, POS machines, and printers, ensuring timely availability of equipment.</li>
@@ -159,7 +160,7 @@ const Contents = () => {
         </p>
 
         <div className="cards grid md:grid-cols-2 gap-8">
-  {/* First E-commerce Project Card */}
+  {/* First E-commerce depop */}
   <div className="flex flex-col gap-4">
     <a 
       className="no-underline relative group" 
@@ -205,11 +206,11 @@ const Contents = () => {
     </div>
   </div>
 
-  {/* Second E-commerce Project Card */}
+  {/* Dennis Portfolio Website */}
   <div className="flex flex-col gap-4">
     <a 
       className="no-underline relative group" 
-      href="https://https://my-portfolio-dennis.xyz//"
+      href="https://my-portfolio-dennis.xyz/"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -249,7 +250,54 @@ const Contents = () => {
       ))}
     </div>
   </div>
+    {/* Totally cooked website */}
+    <div className="flex flex-col gap-4">
+    <a 
+      className="no-underline relative group" 
+      href="https://totallycooked.info/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <div className="w-full h-[400px] p-5 md:p-6 bg-background border border-black/15 
+        rounded-md md:rounded-lg flex md:flex-col justify-between items-end md:items-start 
+        group hover:bg-gray-100 transition-all duration-300 relative overflow-hidden"
+      >
+        <img 
+          src="/project3.png"
+          alt="Ai Chef receipe suggestion service" 
+          className="w-full h-full object-cover absolute top-0 left-0"
+        />
+        
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 
+          transition-opacity duration-300 flex items-center justify-center">
+          <p className="text-white text-xl font-semibold">Ai Chef receipe suggestion service</p>
+        </div>
+      </div>
+    </a>
+    
+    {/* Tech Stack */}
+    <div className="flex flex-wrap gap-2">
+      {[
+        'React',
+        'NextJS',
+        'Tailwind',
+        'MongoDB',
+        'OpenAI',
+        'Supabase',
+      ].map((tech, index) => (
+        <span
+          key={index}
+          className="px-3 py-1 bg-gray-100 text-gray-800 text-sm font-medium rounded-full
+            hover:bg-gray-200 transition-colors duration-200"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
 </div>
+
+
       </section>
 
       {/* Blog Section */}
@@ -294,7 +342,23 @@ const Contents = () => {
               title: "JWT Tokens: Local Storage vs HTTPOnly Cookies",
               image: "/blogmedium.png",
               link: "https://medium.com/@cjun1775/choosing-between-local-storage-and-httponly-cookies-for-storing-jwt-tokens-47f4ecbca6ee"
+            },
+            {
+              title: "About SEO Optimization",
+              image: "/blogmedium.png",
+              link: "https://medium.com/@cjun1775/seo-optimization-a1538321396d"
+            },
+            {
+              title: "Security Considerations When Using Supabase for Your Backend",
+              image: "/blogmedium.png",
+              link: "https://medium.com/@cjun1775/security-considerations-when-using-supabase-for-your-backend-892e2189a157"
+            },
+            {
+              title: "Memory Optimization: How Developers Adapted to Changing RAM Constraints",
+              image: "/blogmedium.png",
+              link: "https://medium.com/@cjun1775/memory-optimization-how-developers-adapted-to-changing-ram-constraints-db59e560ba17"
             }
+
           ].map((blog, index) => (
             <div key={index} className="flex flex-col">
               <a 
